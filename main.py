@@ -1,13 +1,18 @@
+#################################################
+#	Sensor Reading Program and sending payload	#
+#	Created by Group_3					        #
+#	Not needed to import any other sensors      #
+#   Version 1.0                         		#
+#################################################
+
 from network import LoRa
 import socket
 import time
 import binascii
 import pycom
  
-from lib.MPL3115A2 import MPL3115A2
 from lib.LTR329ALS01 import LTR329ALS01
 from lib.SI7006A20 import SI7006A20
-from lib.LIS2HH12 import LIS2HH12
  
 pycom.heartbeat(False)
 pycom.rgbled(0x000000)
@@ -55,14 +60,12 @@ s = socket.socket(socket.AF_LORA, socket.SOCK_RAW)
 s.setblocking(True)
  
 # init the libraries
-temp = MPL3115A2()
-lux = LTR329ALS01()
-multi = SI7006A20()
-accel = LIS2HH12()
+lib_1 = LTR329ALS01()
+lib_2 = SI7006A20()
  
 while True:
     # Read data from the libraries and place into string
-    payload = "%.2f %.2f %.2f %.2f %.2f %.2f" % (temp.temperature(), multi.temperature(), lux.light()[0], multi.humidity(), accel.roll(), accel.pitch())
+    payload = "%.2f %.2f %.2f %.2f" % (lib_1.temperature(), lib_1.light()[0], lib_2.humidity())
     
     #printing data to terminal
     print("Sending %s" % payload)

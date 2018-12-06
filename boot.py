@@ -1,3 +1,8 @@
+#####################################################
+#	Boot section to define communication and        #
+#   select class which will run once LoPy powered   #
+#	Created by Group_3					            #
+#####################################################
 from machine import UART
 import machine
 import os

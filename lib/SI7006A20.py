@@ -1,3 +1,9 @@
+#####################################################
+#	Downloaded library for Pysene module            #
+#   Used in order to get temperature, humidity      #
+#   sensor readings                                 #
+#	Created by Group_3					            #
+#####################################################
 import time
 from machine import I2C
 import math

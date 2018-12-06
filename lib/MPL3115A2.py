@@ -1,3 +1,8 @@
+#####################################################
+#	Downloaded library for Pysene module            #
+#   Not used currently                              #
+#	Created by Group_3					            #
+#####################################################
 import time
 from machine import I2C
 
