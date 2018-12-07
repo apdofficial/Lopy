@@ -4,6 +4,7 @@
 #	Not needed to import any other sensors      #
 #   Version 1.0                         		#
 #################################################
+#TEST
 
 from network import LoRa
 import socket
