@@ -69,10 +69,10 @@ while True:
     # payload is returning following
     # temperature(degrees Celsius), luminosity, humidity, pressure (Pascal)
     
-    payload = "%.0f %4.0f %3.0f %.0f" % (int(lib_2.temperature()), int(lib_1.light()[0]), int(lib_2.humidity()), int(lib_3.pressure()))
+    payload = "%.0f %3.0f %3.0f %.0f" % (int(lib_2.temperature()), int(lib_1.light()[0]), int(lib_2.humidity()), int(lib_3.pressure()))
     
     #printing data to terminal
-    print("Sending %s" % payload)
+    print("Sending temperature(degrees Celsius), luminosity, humidity, pressure (Pascal) -> %s" % payload)
     
     # send the data over LPWAN network
     s.send(payload)
