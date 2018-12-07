@@ -14,7 +14,6 @@ import pycom
  
 from lib.LTR329ALS01 import LTR329ALS01
 from lib.SI7006A20 import SI7006A20
-from lib.L76GNSS import L76GNSS
 
 pycom.heartbeat(False)
 pycom.rgbled(0x000000)
@@ -64,11 +63,11 @@ s.setblocking(True)
 # init the libraries
 lib_1 = LTR329ALS01()
 lib_2 = SI7006A20()
-lib_3 = L76GNSS()
  
 while True:
     # Read data from the libraries and place into string
-    payload = "%.2f %.2f %.2f %.2f %.2f" % (lib_1.temperature(), lib_1.light()[0], lib_2.humidity(), lib_3.coordinates())
+    #temperature() is in degrees Celsius
+    payload = "%.2f %.2f %.2f" % (lib_2.temperature(), lib_1.light()[0], lib_2.humidity())
     
     #printing data to terminal
     print("Sending %s" % payload)
