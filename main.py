@@ -4,7 +4,6 @@
 #	Not needed to import any other sensors      #
 #   Version 1.0                         		#
 #################################################
-#TEST
 
 from network import LoRa
 import socket
@@ -65,9 +64,11 @@ lib_1 = LTR329ALS01()
 lib_2 = SI7006A20()
  
 while True:
-    # Read data from the libraries and place into string
-    #temperature() is in degrees Celsius
-    payload = "%.2f %.2f %.2f" % (lib_2.temperature(), lib_1.light()[0], lib_2.humidity())
+    # Read data from the libraries and place into payload
+    # payload is returning following
+    # temperature(degrees Celsius), luminosity, humidity
+    
+    payload = (lib_2.temperature(), lib_1.light()[0], lib_2.humidity())
     
     #printing data to terminal
     print("Sending %s" % payload)
@@ -80,5 +81,5 @@ while True:
     time.sleep(0.1)
     pycom.rgbled(0x000000)
 
-    #DELAY 20sec
+    #DELAY 100sec
     time.sleep(100)
