@@ -86,4 +86,4 @@ while True:
     pycom.rgbled(0x000000)
 
     #DELAY 100sec
-    time.sleep(30)
+    time.sleep(120)
