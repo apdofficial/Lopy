@@ -10,7 +10,8 @@ import socket
 import time
 import binascii
 import pycom
- 
+import struct
+
 from lib.LTR329ALS01 import LTR329ALS01
 from lib.SI7006A20 import SI7006A20
 from lib.MPL3115A2 import MPL3115A2
@@ -67,13 +68,15 @@ lib_3 = MPL3115A2()
 while True:
     # Read data from the libraries and place into payload
     # payload is returning following
-    # temperature(degrees Celsius), luminosity, humidity, pressure (Pascal)
+    # Temperature(degrees Celsius), Luminosity(Lux), Humidity(%), Pressure (Pascal)
     
-    payload = "%.0f %3.0f %3.0f %.0f" % (int(lib_2.temperature()), int(lib_1.light()[0]), int(lib_2.humidity()), int(lib_3.pressure()))
-    
+    payload2 = "%.0f %3.0f %3.0f %.0f" % (int(lib_2.temperature()), int(lib_1.light()[0]), int(lib_2.humidity()), int(lib_3.pressure()))
+    payload= (struct.pack("<h",int(lib_2.temperature()*1))+struct.pack("<h",int(lib_1.light()[0]*1))+struct.pack("<h", int(lib_2.humidity()*1))+struct.pack("<i",int(lib_3.pressure())))
+
     #printing data to terminal
-    print("Sending temperature(degrees Celsius), luminosity, humidity, pressure (Pascal) -> %s" % payload)
-    
+    print("Sending data -> %s" % payload)
+    print("Temperature(degrees Celsius), Luminosity(Lux), Humidity(%), Pressure (Pascal)")
+    print("Printing data -> %s" % payload2, "\n")
     # send the data over LPWAN network
     s.send(payload)
 
@@ -83,4 +86,4 @@ while True:
     pycom.rgbled(0x000000)
 
     #DELAY 100sec
-    time.sleep(100)
+    time.sleep(30)
