@@ -5,6 +5,7 @@
 #   Version 1.0                         		#
 #################################################
 
+#negin
 from network import LoRa
 import socket
 import time
