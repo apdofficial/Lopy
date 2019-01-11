@@ -72,7 +72,7 @@ while True:
     # Temperature(degrees Celsius), Luminosity(Lux), Humidity(%), Pressure (Pascal)
     
     payload2 = "%.0f %3.0f %3.0f %.0f" % (int(lib_2.temperature()), int(lib_1.light()[0]), int(lib_2.humidity()), int(lib_3.pressure()))
-    payload= (struct.pack("<h",int(lib_2.temperature()*1))+struct.pack("<h",int(lib_1.light()[0]*1))+struct.pack("<h", int(lib_2.humidity()*1))+struct.pack("<i",int(lib_3.pressure())))
+    payload= (struct.pack("<h",int(lib_2.temperature()*1))+struct.pack("<h",int(lib_1.light()[0]*1))+struct.pack("<h", int(lib_2.humidity()*1))+struct.pack("<h",int(lib_3.pressure())))
 
     #printing data to terminal
     print("Sending data -> %s" % payload)
@@ -87,4 +87,4 @@ while True:
     pycom.rgbled(0x000000)
 
     #DELAY 100sec
-    time.sleep(120)
+    time.sleep(20)

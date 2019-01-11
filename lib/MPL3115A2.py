@@ -84,7 +84,7 @@ class MPL3115A2:
         OUT_P_CSB = self.i2c.readfrom_mem(MPL3115_I2CADDR, MPL3115_PRESSURE_DATA_CSB,1)
         OUT_P_LSB = self.i2c.readfrom_mem(MPL3115_I2CADDR, MPL3115_PRESSURE_DATA_LSB,1)
 
-        return float((OUT_P_MSB[0] << 10) + (OUT_P_CSB[0] << 2) + ((OUT_P_LSB[0] >> 6) & 0x03) + ((OUT_P_LSB[0] >> 4) & 0x03) / 4.0)
+        return float((OUT_P_MSB[0] << 10) + (OUT_P_CSB[0] << 2) + ((OUT_P_LSB[0] >> 6) & 0x03) + ((OUT_P_LSB[0] >> 4) & 0x03) / 4.0)/10
 
     def altitude(self):
         if self.mode == PRESSURE:
